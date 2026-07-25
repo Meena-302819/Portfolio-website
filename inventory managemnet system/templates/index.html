@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventory Management System</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>Inventory</h2>
+
+<ul>
+<li><a href="/dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+<li><a href="/products"><i class="fas fa-box"></i> Products</a></li>
+<li><a href="/add-product"><i class="fas fa-plus-circle"></i> Add Product</a></li>
+<li><a href="/categories"><i class="fas fa-tags"></i> Categories</a></li>
+<li><a href="/suppliers"><i class="fas fa-truck"></i> Suppliers</a></li>
+<li><a href="/reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
+<li><a href="/login"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+</ul>
+
+</div>
+
+<div class="main">
+
+<header>
+<h1>Inventory Dashboard</h1>
+</header>
+
+<div class="cards">
+
+<div class="card">
+<h3>Total Products</h3>
+<h2 id="totalProducts">0</h2>
+</div>
+
+<div class="card">
+<h3>Total Stock</h3>
+<h2 id="totalStock">0</h2>
+</div>
+
+<div class="card">
+<h3>Categories</h3>
+<h2 id="totalCategories">0</h2>
+</div>
+
+<div class="card">
+<h3>Low Stock</h3>
+<h2 id="lowStock">0</h2>
+</div>
+
+</div>
+
+<div class="form">
+
+<input type="text" id="productName" placeholder="Product Name">
+
+<input type="text" id="productID" placeholder="Product ID">
+
+<input type="number" id="price" placeholder="Price">
+
+<input type="number" id="quantity" placeholder="Quantity">
+
+<button onclick="addProduct()">Add Product</button>
+
+</div>
+
+<input type="text"
+id="search"
+placeholder="Search..."
+onkeyup="searchProduct()">
+
+<table>
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Price</th>
+<th>Qty</th>
+<th>Total</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="tableData">
+</tbody>
+
+</table>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

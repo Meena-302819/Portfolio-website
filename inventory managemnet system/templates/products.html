@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>Inventory</h2>
+
+<ul>
+<li><a href="/dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+<li><a href="/products"><i class="fas fa-box"></i> Products</a></li>
+<li><a href="/add-product"><i class="fas fa-plus"></i> Add Product</a></li>
+<li><a href="/categories"><i class="fas fa-tags"></i> Categories</a></li>
+<li><a href="/suppliers"><i class="fas fa-truck"></i> Suppliers</a></li>
+<li><a href="/reports"><i class="fas fa-chart-line"></i> Reports</a></li>
+<li><a href="/login"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+</ul>
+
+</div>
+
+<div class="main">
+
+<header>
+<h1>Products</h1>
+</header>
+
+<input
+type="text"
+id="search"
+placeholder="Search Product..."
+onkeyup="searchProduct()">
+
+<table>
+
+<thead>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Price</th>
+<th>Quantity</th>
+<th>Total</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+</thead>
+
+<tbody id="productTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+<script src="{{ url_for('static', filename='product.js') }}"></script>
+
+</body>
+</html>

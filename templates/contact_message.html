@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact Messages</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#0f172a;
+    color:white;
+}
+
+.container{
+    width:95%;
+    margin:30px auto;
+}
+
+h1{
+    text-align:center;
+    color:#38bdf8;
+    margin-bottom:30px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:#1e293b;
+}
+
+th{
+    background:#38bdf8;
+    color:white;
+    padding:15px;
+}
+
+td{
+    padding:15px;
+    text-align:center;
+    border-bottom:1px solid #334155;
+}
+
+tr:hover{
+    background:#334155;
+}
+
+.delete-btn{
+
+    background:#ef4444;
+    color:white;
+    padding:8px 15px;
+    border-radius:6px;
+    text-decoration:none;
+
+}
+
+.delete-btn:hover{
+
+    background:#dc2626;
+
+}
+
+.back-btn{
+
+    display:inline-block;
+    margin-top:25px;
+    padding:12px 25px;
+    background:#22c55e;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+
+}
+
+.back-btn:hover{
+
+    background:#16a34a;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>
+
+<i class="fas fa-envelope"></i>
+
+Contact Messages
+
+</h1>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>Name</th>
+
+<th>Email</th>
+
+<th>Subject</th>
+
+<th>Message</th>
+
+<th>Date</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for contact in contacts %}
+
+<tr>
+
+<td>{{ contact.id }}</td>
+
+<td>{{ contact.name }}</td>
+
+<td>{{ contact.email }}</td>
+
+<td>{{ contact.subject }}</td>
+
+<td>{{ contact.message }}</td>
+
+<td>{{ contact.date }}</td>
+
+<td>
+
+<a href="/delete/{{ contact.id }}" class="delete-btn">
+
+Delete
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+<a href="/admin" class="back-btn">
+
+<i class="fas fa-arrow-left"></i>
+
+Back to Admin
+
+</a>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Issue Book</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='dashboard.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+.form-container{
+
+max-width:700px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+
+}
+
+.form-group{
+
+margin-bottom:20px;
+
+}
+
+.form-group label{
+
+display:block;
+margin-bottom:8px;
+font-weight:bold;
+
+}
+
+.form-group input{
+
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+
+}
+
+.form-group input:focus{
+
+border-color:#2563eb;
+outline:none;
+
+}
+
+.issue-btn{
+
+width:100%;
+padding:15px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:8px;
+font-size:18px;
+cursor:pointer;
+
+}
+
+.issue-btn:hover{
+
+background:#1d4ed8;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2><i class="fas fa-book"></i> Library</h2>
+
+<ul>
+
+<li><a href="/dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+
+<li><a href="/books"><i class="fas fa-book"></i> Books</a></li>
+
+<li><a href="/addbook"><i class="fas fa-plus-circle"></i> Add Book</a></li>
+
+<li><a href="/search"><i class="fas fa-search"></i> Search</a></li>
+
+<li><a href="/issue" class="active"><i class="fas fa-book-reader"></i> Issue Book</a></li>
+
+<li><a href="/return"><i class="fas fa-undo"></i> Return Book</a></li>
+
+<li><a href="/issuedbooks"><i class="fas fa-history"></i> Issue History</a></li>
+
+<li><a href="/returnedbooks"><i class="fas fa-clipboard-check"></i> Return History</a></li>
+
+<li><a href="/reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
+
+<li><a href="/"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<header>
+
+<h1>Issue Book</h1>
+
+</header>
+
+<div class="form-container">
+
+<div class="form-group">
+
+<label>Book ID</label>
+
+<input
+type="text"
+id="bookID"
+placeholder="Enter Book ID">
+
+</div>
+
+<div class="form-group">
+
+<label>Student Name</label>
+
+<input
+type="text"
+id="studentName"
+placeholder="Enter Student Name">
+
+</div>
+
+<div class="form-group">
+
+<label>Roll Number</label>
+
+<input
+type="text"
+id="rollNo"
+placeholder="Enter Roll Number">
+
+</div>
+
+<button
+class="issue-btn"
+onclick="issueBook()">
+
+<i class="fas fa-book-reader"></i>
+
+Issue Book
+
+</button>
+
+</div>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

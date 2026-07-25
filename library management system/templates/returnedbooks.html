@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Returned Books</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='books.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2><i class="fas fa-book"></i> Library</h2>
+
+<ul>
+
+<li><a href="/dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+
+<li><a href="/books"><i class="fas fa-book"></i> Books</a></li>
+
+<li><a href="/addbook"><i class="fas fa-plus-circle"></i> Add Book</a></li>
+
+<li><a href="/search"><i class="fas fa-search"></i> Search</a></li>
+
+<li><a href="/issue"><i class="fas fa-book-reader"></i> Issue Book</a></li>
+
+<li><a href="/return"><i class="fas fa-undo"></i> Return Book</a></li>
+
+<li><a href="/issuedbooks"><i class="fas fa-history"></i> Issue History</a></li>
+
+<li><a href="/returnedbooks" class="active"><i class="fas fa-clipboard-check"></i> Return History</a></li>
+
+<li><a href="/reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
+
+<li><a href="/"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<header>
+
+<h1>Returned Books History</h1>
+
+</header>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Book ID</th>
+
+<th>Book Name</th>
+
+<th>Student Name</th>
+
+<th>Roll Number</th>
+
+<th>Issue Date</th>
+
+<th>Return Date</th>
+
+</tr>
+
+</thead>
+
+<tbody id="returnedTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

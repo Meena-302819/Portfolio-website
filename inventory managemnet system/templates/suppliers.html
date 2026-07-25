@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suppliers</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>Inventory</h2>
+
+<ul>
+<li><a href="/dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+<li><a href="/products"><i class="fas fa-box"></i> Products</a></li>
+<li><a href="/add-product"><i class="fas fa-plus"></i> Add Product</a></li>
+<li><a href="/categories"><i class="fas fa-tags"></i> Categories</a></li>
+<li><a href="/suppliers"><i class="fas fa-truck"></i> Suppliers</a></li>
+<li><a href="/reports"><i class="fas fa-chart-line"></i> Reports</a></li>
+<li><a href="/login"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+</ul>
+
+</div>
+
+<div class="main">
+
+<header>
+<h1>Suppliers</h1>
+</header>
+
+<div class="form">
+
+<input type="text" id="supplierName" placeholder="Supplier Name">
+
+<input type="text" id="supplierPhone" placeholder="Phone Number">
+
+<button onclick="addSupplier()">Add Supplier</button>
+
+</div>
+
+<table>
+
+<thead>
+
+<tr>
+<th>S.No</th>
+<th>Supplier Name</th>
+<th>Phone</th>
+<th>Action</th>
+</tr>
+
+</thead>
+
+<tbody id="supplierTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+<script>
+
+window.onload = function () {
+    loadSuppliers();
+};
+
+// -----------------------
+// Add Supplier
+// -----------------------
+async function addSupplier(){
+
+    let supplierName = document.getElementById("supplierName").value.trim();
+    let supplierPhone = document.getElementById("supplierPhone").value.trim();
+
+    if(supplierName=="" || supplierPhone==""){
+        alert("Please fill all fields");
+        return;
+    }
+
+    let response = await fetch("/api/add_supplier",{
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+
+            supplier_name:supplierName,
+            phone:supplierPhone
+
+        })
+
+    });
+
+    let result = await response.json();
+
+    alert(result.message);
+
+    document.getElementById("supplierName").value="";
+    document.getElementById("supplierPhone").value="";
+
+    loadSuppliers();
+
+}
+
+// -----------------------
+// Load Suppliers
+// -----------------------
+async function loadSuppliers(){
+
+    let response = await fetch("/api/suppliers");
+
+    let suppliers = await response.json();
+
+    let table = document.getElementById("supplierTable");
+
+    table.innerHTML="";
+
+    suppliers.forEach((supplier,index)=>{
+
+        table.innerHTML += `
+
+        <tr>
+
+        <td>${index+1}</td>
+
+        <td>${supplier.supplier_name}</td>
+
+        <td>${supplier.phone}</td>
+
+        <td>
+
+        <button onclick="deleteSupplier(${supplier.id})">
+
+        Delete
+
+        </button>
+
+        </td>
+
+        </tr>
+
+        `;
+
+    });
+
+}
+
+// -----------------------
+// Delete Supplier
+// -----------------------
+async function deleteSupplier(id){
+
+    if(!confirm("Delete Supplier?")) return;
+
+    await fetch("/api/delete_supplier/"+id,{
+
+        method:"DELETE"
+
+    });
+
+    loadSuppliers();
+
+}
+
+</script>
+
+</body>
+</html>

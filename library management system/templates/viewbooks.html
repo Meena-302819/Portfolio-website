@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Books</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="login-box" style="width:90%; max-width:1000px;">
+
+    <h1>📚 Book List</h1>
+
+    <table border="1" width="100%" cellspacing="0" cellpadding="10">
+        <thead>
+            <tr>
+                <th>Book ID</th>
+                <th>Book Name</th>
+                <th>Author</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+
+        <tbody id="bookTable">
+        </tbody>
+
+    </table>
+
+    <br>
+
+    <a href="dashboard.html">
+        <button>Back to Dashboard</button>
+    </a>
+
+</div>
+
+<script>
+let books = JSON.parse(localStorage.getItem("books")) || [];
+
+let table = document.getElementById("bookTable");
+
+function displayBooks(){
+
+    table.innerHTML = "";
+
+    books.forEach((book,index)=>{
+
+        table.innerHTML += `
+        <tr>
+            <td>${book.bookId}</td>
+            <td>${book.bookName}</td>
+            <td>${book.author}</td>
+            <td>${book.category}</td>
+            <td>${book.quantity}</td>
+            <td>
+                <button onclick="deleteBook(${index})">Delete</button>
+            </td>
+        </tr>
+        `;
+
+    });
+
+}
+
+function deleteBook(index){
+
+    books.splice(index,1);
+
+    localStorage.setItem("books",JSON.stringify(books));
+
+    displayBooks();
+
+}
+
+displayBooks();
+
+</script>
+
+</body>
+</html>

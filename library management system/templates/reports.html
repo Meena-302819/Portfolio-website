@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Library Reports</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='dashboard.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+.report-cards{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-bottom:30px;
+
+}
+
+.report-card{
+
+background:white;
+padding:25px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+
+}
+
+.report-card i{
+
+font-size:40px;
+color:#2563eb;
+margin-bottom:15px;
+
+}
+
+.report-card h2{
+
+color:#1e3a8a;
+margin-top:10px;
+
+}
+
+table{
+
+width:100%;
+border-collapse:collapse;
+background:white;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+border-radius:10px;
+overflow:hidden;
+
+}
+
+thead{
+
+background:#2563eb;
+color:white;
+
+}
+
+th,td{
+
+padding:14px;
+text-align:center;
+border-bottom:1px solid #ddd;
+
+}
+
+tbody tr:hover{
+
+background:#f5f9ff;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2><i class="fas fa-book"></i> Library</h2>
+
+<ul>
+
+<li><a href="/dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+
+<li><a href="/books"><i class="fas fa-book"></i> Books</a></li>
+
+<li><a href="/addbook"><i class="fas fa-plus-circle"></i> Add Book</a></li>
+
+<li><a href="/search"><i class="fas fa-search"></i> Search</a></li>
+
+<li><a href="/issue"><i class="fas fa-book-reader"></i> Issue Book</a></li>
+
+<li><a href="/return"><i class="fas fa-undo"></i> Return Book</a></li>
+
+<li><a href="/issuedbooks"><i class="fas fa-history"></i> Issue History</a></li>
+
+<li><a href="/returnedbooks"><i class="fas fa-clipboard-check"></i> Return History</a></li>
+
+<li><a href="/reports" class="active"><i class="fas fa-chart-bar"></i> Reports</a></li>
+
+<li><a href="/"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<header>
+
+<h1>Library Reports</h1>
+
+</header>
+
+<div class="report-cards">
+
+<div class="report-card">
+
+<i class="fas fa-book"></i>
+
+<h3>Total Books</h3>
+
+<h2 id="totalBooks">0</h2>
+
+</div>
+
+<div class="report-card">
+
+<i class="fas fa-layer-group"></i>
+
+<h3>Total Quantity</h3>
+
+<h2 id="totalQuantity">0</h2>
+
+</div>
+
+<div class="report-card">
+
+<i class="fas fa-check-circle"></i>
+
+<h3>Available Books</h3>
+
+<h2 id="availableBooks">0</h2>
+
+</div>
+
+<div class="report-card">
+
+<i class="fas fa-book-reader"></i>
+
+<h3>Issued Books</h3>
+
+<h2 id="issuedBooks">0</h2>
+
+</div>
+
+</div>
+
+<h2 style="margin-bottom:20px;">Books Report</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Book ID</th>
+<th>Book Name</th>
+<th>Author</th>
+<th>Category</th>
+<th>Total Qty</th>
+<th>Available</th>
+
+</tr>
+
+</thead>
+
+<tbody id="reportTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

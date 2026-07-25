@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='dashboard.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2><i class="fas fa-book"></i> Library</h2>
+
+<ul>
+
+<li>
+<a href="/dashboard" class="active">
+<i class="fas fa-home"></i>
+Dashboard
+</a>
+</li>
+
+<li>
+<a href="/books">
+<i class="fas fa-book"></i>
+Books
+</a>
+</li>
+
+<li>
+<a href="/addbook">
+<i class="fas fa-plus-circle"></i>
+Add Book
+</a>
+</li>
+
+<li>
+<a href="/search">
+<i class="fas fa-search"></i>
+Search
+</a>
+</li>
+
+<li>
+<a href="/issue">
+<i class="fas fa-book-reader"></i>
+Issue Book
+</a>
+</li>
+
+<li>
+<a href="/return">
+<i class="fas fa-undo"></i>
+Return Book
+</a>
+</li>
+
+<li>
+<a href="/issuedbooks">
+<i class="fas fa-history"></i>
+Issue History
+</a>
+</li>
+
+<li>
+<a href="/returnedbooks">
+<i class="fas fa-clipboard-check"></i>
+Return History
+</a>
+</li>
+
+<li>
+<a href="/reports">
+<i class="fas fa-chart-bar"></i>
+Reports
+</a>
+</li>
+
+<li>
+<a href="/" onclick="logout()">
+<i class="fas fa-sign-out-alt"></i>
+Logout
+</a>
+</li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<header>
+
+<h1>Library Dashboard</h1>
+
+<p>
+Welcome Administrator
+</p>
+
+</header>
+
+<div class="cards">
+
+<div class="card">
+
+<i class="fas fa-book"></i>
+
+<h3>Total Books</h3>
+
+<h2 id="totalBooks">0</h2>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-layer-group"></i>
+
+<h3>Total Quantity</h3>
+
+<h2 id="totalQuantity">0</h2>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-check-circle"></i>
+
+<h3>Available Books</h3>
+
+<h2 id="availableBooks">0</h2>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-book-reader"></i>
+
+<h3>Issued Books</h3>
+
+<h2 id="issuedBooks">0</h2>
+
+</div>
+
+</div>
+
+<div class="welcome">
+
+<h2>Welcome to Library Management System</h2>
+
+<p>
+
+Manage books, issue books, return books, search records and generate reports from one place.
+
+</p>
+
+</div>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Add Book</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='dashboard.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+.form-container{
+
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+max-width:700px;
+margin:auto;
+
+}
+
+.form-group{
+
+margin-bottom:20px;
+
+}
+
+.form-group label{
+
+display:block;
+margin-bottom:8px;
+font-weight:bold;
+color:#333;
+
+}
+
+.form-group input{
+
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+
+}
+
+.form-group input:focus{
+
+border-color:#2563eb;
+outline:none;
+
+}
+
+.btn-group{
+
+display:flex;
+gap:15px;
+margin-top:20px;
+
+}
+
+.save-btn{
+
+flex:1;
+background:#2563eb;
+color:white;
+padding:14px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:17px;
+
+}
+
+.save-btn:hover{
+
+background:#1d4ed8;
+
+}
+
+.clear-btn{
+
+flex:1;
+background:#ef4444;
+color:white;
+padding:14px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:17px;
+
+}
+
+.clear-btn:hover{
+
+background:#dc2626;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2><i class="fas fa-book"></i> Library</h2>
+
+<ul>
+
+<li><a href="/dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+
+<li><a href="/books"><i class="fas fa-book"></i> Books</a></li>
+
+<li><a href="/addbook" class="active"><i class="fas fa-plus-circle"></i> Add Book</a></li>
+
+<li><a href="/search"><i class="fas fa-search"></i> Search</a></li>
+
+<li><a href="/issue"><i class="fas fa-book-reader"></i> Issue Book</a></li>
+
+<li><a href="/return"><i class="fas fa-undo"></i> Return Book</a></li>
+
+<li><a href="/issuedbooks"><i class="fas fa-history"></i> Issue History</a></li>
+
+<li><a href="/returnedbooks"><i class="fas fa-clipboard-check"></i> Return History</a></li>
+
+<li><a href="/reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
+
+<li><a href="/"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<header>
+
+<h1>Add New Book</h1>
+
+</header>
+
+<div class="form-container">
+
+<div class="form-group">
+
+<label>Book ID</label>
+
+<input
+type="text"
+id="bookID"
+placeholder="Enter Book ID">
+
+</div>
+
+<div class="form-group">
+
+<label>Book Name</label>
+
+<input
+type="text"
+id="bookName"
+placeholder="Enter Book Name">
+
+</div>
+
+<div class="form-group">
+
+<label>Author</label>
+
+<input
+type="text"
+id="author"
+placeholder="Enter Author Name">
+
+</div>
+
+<div class="form-group">
+
+<label>Category</label>
+
+<input
+type="text"
+id="category"
+placeholder="Enter Category">
+
+</div>
+
+<div class="form-group">
+
+<label>Quantity</label>
+
+<input
+type="number"
+id="quantity"
+placeholder="Enter Quantity">
+
+</div>
+
+<div class="btn-group">
+
+<button
+class="save-btn"
+onclick="saveBook()">
+
+<i class="fas fa-save"></i>
+
+Save Book
+
+</button>
+
+<button
+class="clear-btn"
+onclick="clearBookForm()">
+
+<i class="fas fa-eraser"></i>
+
+Clear
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

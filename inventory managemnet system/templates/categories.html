@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Categories</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>Inventory</h2>
+
+<ul>
+<li><a href="/dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+<li><a href="/products"><i class="fas fa-box"></i> Products</a></li>
+<li><a href="/add-product"><i class="fas fa-plus"></i> Add Product</a></li>
+<li><a href="/categories"><i class="fas fa-tags"></i> Categories</a></li>
+<li><a href="/suppliers"><i class="fas fa-truck"></i> Suppliers</a></li>
+<li><a href="/reports"><i class="fas fa-chart-line"></i> Reports</a></li>
+<li><a href="/login"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+</ul>
+
+</div>
+
+<div class="main">
+
+<header>
+<h1>Categories</h1>
+</header>
+
+<div class="form">
+
+<input type="text" id="categoryName" placeholder="Category Name">
+
+<button onclick="addCategory()">Add Category</button>
+
+</div>
+
+<table>
+
+<thead>
+<tr>
+<th>S.No</th>
+<th>Category Name</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="categoryTable">
+</tbody>
+
+</table>
+
+</div>
+
+<script>
+
+window.onload = function () {
+    loadCategories();
+};
+
+// ---------------------
+// Add Category
+// ---------------------
+async function addCategory() {
+
+    let category = document.getElementById("categoryName").value.trim();
+
+    if(category==""){
+        alert("Enter Category Name");
+        return;
+    }
+
+    let response = await fetch("/api/add_category",{
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+            category_name:category
+        })
+
+    });
+
+    let result = await response.json();
+
+    alert(result.message);
+
+    document.getElementById("categoryName").value="";
+
+    loadCategories();
+
+}
+
+// ---------------------
+// Load Categories
+// ---------------------
+async function loadCategories(){
+
+    let response = await fetch("/api/categories");
+
+    let categories = await response.json();
+
+    let table = document.getElementById("categoryTable");
+
+    table.innerHTML="";
+
+    categories.forEach((c,index)=>{
+
+        table.innerHTML += `
+
+        <tr>
+
+            <td>${index+1}</td>
+
+            <td>${c.category_name}</td>
+
+            <td>
+
+                <button onclick="deleteCategory(${c.id})">
+
+                    Delete
+
+                </button>
+
+            </td>
+
+        </tr>
+
+        `;
+
+    });
+
+}
+
+// ---------------------
+// Delete Category
+// ---------------------
+async function deleteCategory(id){
+
+    if(!confirm("Delete Category?")) return;
+
+    await fetch("/api/delete_category/"+id,{
+        method:"DELETE"
+    });
+
+    loadCategories();
+
+}
+
+</script>
+</body>
+</html>
